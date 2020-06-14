@@ -42,7 +42,7 @@
           </v-list-item-action>
 
           <v-list-item-content>
-            <v-list-item-title>NoraeBang</v-list-item-title>
+            <v-list-item-title>Trails</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -69,7 +69,7 @@
 
       <v-toolbar-title @click="toHome"
                        style="align-self: center; margin-right: fill; font-size: 2rem; font-family : 'Song Myung'">
-        노래방에서</v-toolbar-title>
+        Walking in the Green</v-toolbar-title>
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>

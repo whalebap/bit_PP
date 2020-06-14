@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import Login from "../components/member/Login";
 import Join from "../components/member/Join";
 import Karaoke from "../components/common/Karaoke";
+import Home from "../components/Home";
 
 Vue.use(VueRouter);
 

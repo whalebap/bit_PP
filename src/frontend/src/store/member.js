@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const state = {
-    context: 'http://localhost:3000'
+    context: 'http://localhost:3000/'
 }
 
 const actions = {
@@ -12,7 +12,7 @@ const actions = {
             Accept: 'application/json',
             'Content-Type': 'application/json'
         }
-        axios.post(`${state.context}/members/join`, payload, headers)
+        axios.post(`${state.context}members/join`, payload, headers)
             .then(({data}) => {
                 alert('액션 방문')
                 alert(data.userid)

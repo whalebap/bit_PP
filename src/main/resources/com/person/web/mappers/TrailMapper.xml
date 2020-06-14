@@ -1,0 +1,13 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.web.mappers.TrailMapper">
+
+    <select id="selectAll" resultType="com.person.web.domains.TrailDTO"
+            >
+        select trail_name trailName, course_name courseName, route,
+        location, difficulty, distance, detail, time_required timeRequired
+        from trails
+
+    </select>
+</mapper>
