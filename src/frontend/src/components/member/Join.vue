@@ -7,7 +7,7 @@
                     :hint="hintId"
                     :clearable="clearable"
                     :counter="counterEn ? counterId : false"
-                    v-model="userid"
+                    v-model="userId"
             ></v-text-field>
             <v-text-field
                     :label="labelPassword"
@@ -19,7 +19,7 @@
             <v-text-field
                     :label="labelName"
                     :clearable="clearable"
-                    v-model="name"
+                    v-model="userName"
 
             ></v-text-field>
             <v-text-field
@@ -42,8 +42,8 @@
     export default {
         methods : {
             register() {
-                alert('회원가입 클릭'+this.userid)
-                this.$store.dispatch(`member/register`, {userid:this.userid, password:this.password, name:this.name, email:this.email})
+                alert('회원가입 클릭'+this.userId)
+                this.$store.dispatch(`member/register`, {userId:this.userId, password:this.password, userName:this.userName, email:this.email})
             },
 
             cancel(){
@@ -62,9 +62,9 @@
             counterEn: true,
             counterId: 15,
             counterPassword : 20,
-            userid:'',
+            userId:'',
             password:'',
-            name:'',
+            userName:'',
             email:''
 
         })}

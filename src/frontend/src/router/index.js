@@ -2,8 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../components/member/Login";
 import Join from "../components/member/Join";
-import Karaoke from "../components/common/Karaoke";
 import Home from "../components/Home";
+import Trail from "../components/common/Trail";
 
 Vue.use(VueRouter);
 
@@ -17,7 +17,7 @@ const routes = [
     component: Login},
   {path : '/join',
     component: Join},
-  {path : '/karaoke', component: Karaoke},
+  {path : '/trail', component: Trail},
 
 ];
 

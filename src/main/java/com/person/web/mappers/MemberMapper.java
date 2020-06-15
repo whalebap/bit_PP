@@ -1,4 +1,9 @@
 package com.person.web.mappers;
 
-public class MemberMapper {
+import com.person.web.domains.MemberDTO;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MemberMapper {
+    public void insertMember(MemberDTO member);
 }

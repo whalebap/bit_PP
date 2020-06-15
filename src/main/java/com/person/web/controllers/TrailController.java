@@ -1,12 +1,13 @@
 package com.person.web.controllers;
 
 import com.person.web.domains.TrailDTO;
+import com.person.web.mappers.TrailMapper;
 import com.person.web.proxy.Proxy;
-import com.person.web.service.TrailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @CrossOrigin(origins="*", allowedHeaders = "*")
 @RestController
@@ -15,13 +16,18 @@ public class TrailController {
     @Autowired
     TrailDTO trail;
     @Autowired
-    TrailService trailService;
-    @Autowired
     Proxy pxy;
+    @Autowired
+    TrailMapper trailMapper;
 
-    @GetMapping("")
-    public List<TrailDTO> list(){
-        pxy.print(trailService.selectAll().toString());
-        return trailService.selectAll();
+    @GetMapping("/aaa")
+    public Map<?, ?> list(){
+        pxy.print(trailMapper.selectAll().get(5).toString());
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", trailMapper.selectAll());
+        map.put("count", String.valueOf(trailMapper.selectAll().size()));
+        pxy.print(map.get("count").toString());
+        return map;
     }
 }

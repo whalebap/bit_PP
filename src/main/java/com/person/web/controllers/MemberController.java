@@ -2,6 +2,7 @@ package com.person.web.controllers;
 
 
 import com.person.web.domains.MemberDTO;
+import com.person.web.mappers.MemberMapper;
 import com.person.web.proxy.Proxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,14 @@ public class MemberController {
     MemberDTO member;
 @Autowired
     Proxy pxy;
+@Autowired
+    MemberMapper memberMapper;
 
 @PostMapping("/join")
-    public MemberDTO join(@RequestBody MemberDTO member) {
+    public void join(@RequestBody MemberDTO member) {
     pxy.print("----------");
     pxy.print(member.toString());
-    return null;
+    memberMapper.insertMember(member);
 }
 
 }

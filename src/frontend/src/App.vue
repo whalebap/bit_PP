@@ -112,7 +112,7 @@
         this.$router.push('/login')
       },
       toNoraeBang(){
-        this.$router.push('/karaoke')
+        this.$router.push('/trail')
       }
 
     }
