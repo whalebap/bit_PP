@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins="*", allowedHeaders = "*")
@@ -20,14 +21,14 @@ public class TrailController {
     @Autowired
     TrailMapper trailMapper;
 
-    @GetMapping("/aaa")
-    public Map<?, ?> list(){
+    @GetMapping("/list")
+    public Map<String, Object> list(){
         pxy.print(trailMapper.selectAll().get(5).toString());
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("list", trailMapper.selectAll());
-        map.put("count", String.valueOf(trailMapper.selectAll().size()));
-        pxy.print(map.get("count").toString());
-        return map;
+        Map<String, Object> trailMap = new HashMap<>();
+        trailMap.put("list", trailMapper.selectAll());
+        trailMap.put("count", trailMapper.count());
+        pxy.print(trailMap.get("count").toString());
+        return trailMap;
     }
 }

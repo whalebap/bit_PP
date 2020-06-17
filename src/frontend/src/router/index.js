@@ -4,6 +4,7 @@ import Login from "../components/member/Login";
 import Join from "../components/member/Join";
 import Home from "../components/Home";
 import Trail from "../components/common/Trail";
+import MyPage from "../components/member/MyPage";
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,7 @@ const routes = [
   {path : '/join',
     component: Join},
   {path : '/trail', component: Trail},
+  {path : '/myPage', component: MyPage},
 
 ];
 

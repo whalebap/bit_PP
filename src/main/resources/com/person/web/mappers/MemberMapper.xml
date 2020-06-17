@@ -9,4 +9,19 @@
         VALUES (#{userId},#{password},#{userName},#{email})
 </insert>
 
+    <select id="login" resultType="com.person.web.domains.MemberDTO"
+            parameterType="com.person.web.domains.MemberDTO">
+        select
+           userid userid, password, username userName, email
+        from member
+        where userid like #{userId} and password like #{password}
+    </select>
+
+    <select id="search" resultType="com.person.web.domains.MemberDTO"
+            parameterType="string">
+        select
+           userid userid
+        from member
+        where userid like #{value}
+    </select>
 </mapper>

@@ -36,7 +36,16 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link @click="toNoraeBang">
+        <v-list-item link @click="toMyPage">
+          <v-list-item-action>
+            <v-icon >mdi-microphone-variant</v-icon>
+          </v-list-item-action>
+
+          <v-list-item-content>
+            <v-list-item-title>My Page</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link @click="toTrail">
           <v-list-item-action>
             <v-icon >mdi-microphone-variant</v-icon>
           </v-list-item-action>
@@ -54,7 +63,7 @@
             absolute
             app
             color="#8D6E63"
-            src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            src="https://images.unsplash.com/photo-1487956382158-bb926046304a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
             dark
             prominent
 
@@ -62,13 +71,14 @@
       <template v-slot:img="{ props }">
         <v-img
                 v-bind="props"
+                position="center"
                 gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         ></v-img>
       </template>
       <v-spacer></v-spacer>
 
       <v-toolbar-title @click="toHome"
-                       style="align-self: center; margin-right: fill; font-size: 2rem; font-family : 'Song Myung'">
+                       style="align-self: center; margin-right: fill; font-size: 2rem;">
         Walking in the Green</v-toolbar-title>
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -111,14 +121,14 @@
       toLogin(){
         this.$router.push('/login')
       },
-      toNoraeBang(){
+      toTrail(){
         this.$router.push('/trail')
+      },
+      toMyPage(){
+        this.$router.push('/myPage')
       }
 
     }
 
   }
 </script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
-</style>
