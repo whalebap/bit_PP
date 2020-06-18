@@ -17,19 +17,21 @@
             </v-card-title>
             <v-data-table
                     :headers="headers"
-                    :items="trails"
+                    :items="this.trails"
                     :search="search">
                 <template>
-                 <tr slot name="item" v-for="item in trails">
-                     <td>{{item.trailName}}</td>
-                     <td>{{item.courseName}}</td>
-                     <td>{{item.route}}</td>
-                     <td>{{item.location}}</td>
-                     <td>{{item.difficulty}}</td>
-                     <td>{{item.distance}}</td>
-                     <td>{{item.detail}}</td>
-                     <td>{{item.timeRequired}}</td>
-                 </tr>
+
+                        <tr slot="items"
+                            v-for="item in this.trails" :key="item.trailName">
+                            <td>{{item.trailName}}</td>
+                            <td>{{item.courseName}}</td>
+                            <td>{{item.route}}</td>
+                            <td>{{item.location}}</td>
+                            <td>{{item.difficulty}}</td>
+                            <td>{{item.distance}}</td>
+                            <td>{{item.detail}}</td>
+                            <td>{{item.timeRequired}}</td>
+                        </tr>
 
 
                 </template>
@@ -39,25 +41,21 @@
 </template>
 
 <script>
-    import {mapState} from "vuex"
+    import TrailListItem from "./TrailListItem";
+    import axios from "axios";
+
+
+
     export default {
-        props : {
 
 
-
-
-
-        }
-
-
-,
-        computed : {
+/*        computed : {
             ...mapState({
                 count : state =>state.trail.count,
                 trails : state=>state.trail.trails
             }),
 
-        },
+        }*/
         data () {
             return {
                 search: '',
@@ -82,7 +80,28 @@
             alert('찾기 버튼 클릭')
             this.$store.dispatch('trail/retriever')
         }
-    }}
+    },
+
+    created() {
+
+            const trails = []
+
+            axios.get(`${this.$store.state.member.context}trails/list`)
+                .then(({data})=>{
+                    alert('액션 내부 방문')
+                    alert("총 코스 수 in 액션"+data.count)
+                    data.list.forEach(item=>{trails.push(item)})
+                    console.log('trails'+trails)
+                })
+
+                .catch(()=>{
+                    alert('서버 통신에러')
+                })
+    }
+
+
+    }
+
 </script>
 
 <style scoped>

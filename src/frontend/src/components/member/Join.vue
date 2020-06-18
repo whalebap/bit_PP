@@ -14,17 +14,20 @@
 
 
                     >
-                        <v-text-field
-                                :label="labelId"
-                                :hint="hintId"
-                                :clearable="clearable"
-                                :counter="counterEn ? counterId : false"
-                                v-model="userId"
 
-                        ></v-text-field>
-                        <v-btn class="mx-2" fab dark small color="primary">
-                            <v-icon dark @click="idCheck">sm-check</v-icon>
-                        </v-btn>
+                            <v-text-field
+                                    :label="labelId"
+                                    :hint="hintId"
+                                    :clearable="clearable"
+                                    :counter="counterEn ? counterId : false"
+                                    v-model="userId"
+
+                            ></v-text-field>
+                            <v-btn class="mx-2" fab dark small color="primary">
+                                <v-icon dark @click="idCheck">small-check</v-icon>
+                            </v-btn>
+
+
                         <v-text-field
                                 :label="labelPassword"
                                 :hint="hintPassword"
