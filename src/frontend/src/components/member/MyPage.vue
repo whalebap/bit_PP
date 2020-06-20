@@ -1,42 +1,64 @@
 <template>
     <div>
         <v-container fluid>
+            <v-row
+                    no-gutters
+            >
+                <v-col
+                        :cols="8"
+                >
+                    <v-card
+                            class="pa-2"
+                            outlined
+                            shaped
 
-            <v-text-field
-                    :value="member.userId"
-                    label="ID"
-                    filled
-                    readonly
-            ></v-text-field>
-            <v-text-field
-                    :label="labelPassword"
-                    :hint="hintPassword"
-                    :clearable="clearable"
-                    :counter="counterEn ? counterPassword : false"
-                    v-model="password"
-            ></v-text-field>
-            <v-text-field
-                    :value="member.userName"
-                    label="NAME"
-                    filled
-                    readonly
+                    >
 
-            ></v-text-field>
-            <v-text-field
-                    :label="labelEmail"
-                    :clearable="clearable"
-                    v-model="email"
+                        <v-form
+                                ref="form"
+                                v-model="valid"
+                        >
+                            <v-text-field
+                                    :value="member.userId"
+                                    label="ID"
+                                    filled
+                                    readonly
+                            ></v-text-field>
+                            <v-text-field
+                                    :label="labelPassword"
+                                    :hint="hintPassword"
+                                    :clearable="clearable"
+                                    :counter="counterEn ? counterPassword : false"
+                                    v-model="password"
+                            ></v-text-field>
+                            <v-text-field
+                                    :value="member.userName"
+                                    label="NAME"
+                                    filled
+                                    readonly
 
-            ></v-text-field>
-            <div class="text-center">
-                <v-btn rounded color="primary" dark large
-                       @click="updateInfo">회원정보 수정</v-btn>
-                <v-btn rounded color="warning" dark large
-                       @click="deleteUser">회원탈퇴</v-btn>
-                <v-btn rounded color="warning" dark large
-                       @click="cancel">취소</v-btn>
+                            ></v-text-field>
+                            <v-text-field
+                                    :label="labelEmail"
+                                    :clearable="clearable"
+                                    v-model="email"
 
-            </div>
+                            ></v-text-field>
+                            <div class="text-center">
+                                <v-btn rounded color="primary" dark large
+                                       @click="updateInfo">회원정보 수정</v-btn>
+                                <v-btn rounded color="warning" dark large
+                                       @click="deleteUser">회원탈퇴</v-btn>
+                                <v-btn rounded color="warning" dark large
+                                       @click="cancel">취소</v-btn>
+
+                            </div>
+                        </v-form>
+
+                    </v-card>
+                </v-col>
+            </v-row>
+
         </v-container>
     </div>
 </template>
