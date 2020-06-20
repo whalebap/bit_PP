@@ -11,8 +11,8 @@ const actions = {
     async retriever({commit}){
         axios.get(`${state.context}trails/list`)
             .then(({data})=>{
-              alert('액션 내부 방문')
-              alert("총 코스 수 in 액션"+data.count)
+              console.log('액션 내부 방문')
+              console.log("총 코스 수 in 액션"+data.count)
               commit('RETRIEVER', data)
 
         })
@@ -35,6 +35,7 @@ const mutations = {
                 location : item.location,
                 difficulty : item.difficulty,
                 distance : item.distance,
+                detailDistance : item.detailDistance,
                 detail : item.detail,
                 timeRequired : item.timeRequired
             })

@@ -22,13 +22,23 @@ public class MemberController {
     MemberMapper memberMapper;
 
 @PostMapping("/join")
-    public void join(@RequestBody MemberDTO member) {
+    public Map<?, ?> join(@RequestBody MemberDTO member) {
     pxy.print("----------");
     pxy.print(member.toString());
-
-
-
-    memberMapper.insertMember(member);;
+    HashMap map = new HashMap();
+    String message = "";
+    if(member.getUserId().equals(memberMapper.searchId(member.getUserId()))) {
+        message = "중복된 ID입니다. 다른 ID를 입력해주세요.";
+        map.put("message", message);
+        map.put("result", false);
+    } else {
+        memberMapper.insertMember(member);
+        message = "회원가입 성공";
+        map.put("message", message);
+        map.put("result", true);
+    }
+    pxy.print(message);
+    return map;
 }
 
 @PostMapping("/{userId}/login")
@@ -47,17 +57,39 @@ public class MemberController {
     return map;
 }
 @GetMapping("/{userId}/idCheck")
-public String idCheck(@PathVariable String userId){
+public Map<?, ?> idCheck(@PathVariable String userId){
+    HashMap map = new HashMap();
     String message = "";
-    pxy.print(userId);
-    if(userId.equals(memberMapper.search(userId))) {
+    if(userId.equals(memberMapper.searchId(userId))) {
         message = "중복된 ID입니다. 다른 ID를 입력해주세요.";
     } else {
         message = "가입 가능한 ID입니다.";
     }
     pxy.print(message);
-    return message;
+    map.put("message", message);
+    return map;
 }
-
+@PostMapping("/{userId}/update")
+    public Map<?, ?> updateUser(@PathVariable String userId, @RequestBody MemberDTO member){
+    pxy.print("--자바 방문함");
+    HashMap map = new HashMap();
+    memberMapper.updateInfo(member);
+    map.put("message", "회원정보 변경 완료");
+    pxy.print("-----------------");
+    pxy.print(memberMapper.login(member).toString());
+    return map;
+}
+@PostMapping("/{userId}/delete")
+    public Map<?,?> deleteMember(@PathVariable String userId, @RequestBody MemberDTO member){
+    pxy.print("회원탈퇴 시작");
+    pxy.print((member.toString()));
+    HashMap map = new HashMap();
+    memberMapper.deleteMember(member);
+    if(memberMapper.login(member) == null) {
+        map.put("message", "회원탈퇴 완료");
+    }
+    pxy.print(map.get("message").toString());
+    return map;
+}
 
 }

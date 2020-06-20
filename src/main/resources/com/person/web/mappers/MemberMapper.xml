@@ -5,23 +5,35 @@
     <insert id="insertMember"
             parameterType="com.person.web.domains.MemberDTO">
 
-        INSERT INTO member (userid, password, username, email)
+        INSERT INTO users (user_id, password, user_name, email)
         VALUES (#{userId},#{password},#{userName},#{email})
 </insert>
 
     <select id="login" resultType="com.person.web.domains.MemberDTO"
             parameterType="com.person.web.domains.MemberDTO">
         select
-           userid userid, password, username userName, email
-        from member
-        where userid like #{userId} and password like #{password}
+           user_id userid, password, user_name userName, email
+        from users
+        where user_id like #{userId} and password like #{password}
     </select>
 
-    <select id="search" resultType="com.person.web.domains.MemberDTO"
+    <select id="searchId" resultType="string"
             parameterType="string">
         select
-           userid userid
-        from member
-        where userid like #{value}
+           user_id userId
+        from users
+        where user_id like #{value}
     </select>
+
+    <update id="updateInfo" parameterType="com.person.web.domains.MemberDTO"
+    >
+        UPDATE users
+SET password = #{password}, email = #{email}
+WHERE user_id like #{userId}
+    </update>
+
+    <delete id="deleteMember" parameterType="com.person.web.domains.MemberDTO">
+        DELETE FROM users where user_id like #{userId} and password like #{password}
+    </delete>
 </mapper>
+

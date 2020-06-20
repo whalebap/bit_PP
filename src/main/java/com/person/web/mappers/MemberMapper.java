@@ -9,5 +9,9 @@ public interface MemberMapper {
 
     public void insertMember(MemberDTO member);
 
-    public String search(String userId);
+    public String searchId(String userId);
+
+    public void updateInfo(MemberDTO member);
+
+    public void deleteMember(MemberDTO member);
 }

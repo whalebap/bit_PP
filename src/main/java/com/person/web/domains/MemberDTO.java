@@ -6,5 +6,5 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class MemberDTO {
-    private String userId, password, userName, email;
+    private String userNo, userId, password, userName, email;
 }
