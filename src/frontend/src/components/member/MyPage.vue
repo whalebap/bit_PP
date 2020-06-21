@@ -3,9 +3,10 @@
         <v-container fluid>
             <v-row
                     no-gutters
+                    justify="center"
             >
                 <v-col
-                        :cols="8"
+                        :cols="5"
                 >
                     <v-card
                             class="pa-2"
@@ -89,6 +90,7 @@
         },
 
         data: () => ({
+            justify : `center`,
             labelPassword : 'PASSWORD',
             labelEmail : 'E-MAIL',
             labelName : 'Name',
@@ -98,9 +100,7 @@
             counterEn: true,
             counterId: 15,
             counterPassword : 20,
-            userId:'',
             password:'',
-            userName:'',
             email:''
 
         })}

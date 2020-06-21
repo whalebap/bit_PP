@@ -85,8 +85,10 @@ public Map<?, ?> idCheck(@PathVariable String userId){
     pxy.print((member.toString()));
     HashMap map = new HashMap();
     memberMapper.deleteMember(member);
-    if(memberMapper.login(member) == null) {
+    if(memberMapper.searchId(userId) == null) {
         map.put("message", "회원탈퇴 완료");
+    } else{
+        map.put("message", "다시 시도해 주세요");
     }
     pxy.print(map.get("message").toString());
     return map;

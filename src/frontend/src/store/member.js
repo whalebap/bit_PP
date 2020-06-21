@@ -42,7 +42,6 @@ const actions = {
             .then(({data}) => {
                 if(data.result){
                     commit('LOGIN', data)
-
                     alert('성공')
                 } else {
                     commit('FAIL_COMMIT')
@@ -55,6 +54,9 @@ const actions = {
                     state.fail = true
                 }
             )
+    },
+    async logout({commit}){
+        commit('LOGOUT')
     },
     async idCheck({commit}, payload){
         alert('액션방문')
@@ -120,9 +122,17 @@ const mutations = {
         state.fail = true
         alert('잘못된 ID나 비밀번호입니다.')
     },
+    LOGOUT(state){
+        localStorage.clear()
+        state.auth = false,
+        state.message = '로그아웃 성공'
+        alert(state.message)
+        router.push('/')
+
+    },
     IDCHECK(state, data){
         state.message = data.message
-        alert(state.message)
+        console.log(state.message)
 
     },
     UPDATEINFO(state, data){
@@ -132,6 +142,11 @@ const mutations = {
     DELETEMEMBER(state, data){
         state.message = data.message
         console.log(state.message)
+        localStorage.clear()
+        state.auth = false,
+
+        router.push('/')
+
     }
 }
 const getters = {

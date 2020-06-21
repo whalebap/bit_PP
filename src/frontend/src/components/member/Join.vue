@@ -3,17 +3,19 @@
         <v-container fluid>
             <v-row
                     no-gutters
+                    :justify="justify"
             >
                 <v-col
-                        :cols="8"
+                        :cols="5"
                 >
                     <v-card
                             class="pa-2"
                             outlined
                             shaped
-
-
                     >
+                        <v-form>
+
+
 
                         <v-text-field
                                 :label="labelId"
@@ -21,26 +23,42 @@
                                 :clearable="clearable"
                                 :counter="counterEn ? counterId : false"
                                 v-model="userId"
+                        >
+                        </v-text-field>
+                        <v-btn dark @click="idCheck">ID 중복 체크</v-btn>
+                        <v-snackbar
+                                v-model="snackbar"
+                        >
+                            {{ text }}
 
-                        ></v-text-field>
-                        <v-btn class="mx-2" fab dark small color="primary">
-                            <v-icon dark @click="idCheck">small-check</v-icon>
-                        </v-btn>
+                            <template v-slot:action="{ attrs }">
+                                <v-btn
+                                        color="pink"
+                                        text
+                                        v-bind="attrs"
+                                        @click="snackbar = false"
 
-
+                                >
+                                    Close
+                                </v-btn>
+                            </template>
+                        </v-snackbar>
                         <v-text-field
                                 :label="labelPassword"
                                 :hint="hintPassword"
                                 :clearable="clearable"
                                 :counter="counterEn ? counterPassword : false"
                                 v-model="password"
+
+
                         ></v-text-field>
                         <v-text-field
                                 :label="labelTwicePassword"
-                                :hint="hintPassword"
                                 :clearable="clearable"
+
                                 :counter="counterEn ? counterPassword : false"
                                 v-model="twicePassword"
+
                         ></v-text-field>
 
                         <v-text-field
@@ -63,6 +81,7 @@
                                    @click="cancel">취소
                             </v-btn>
                         </div>
+                        </v-form>
                     </v-card>
                 </v-col>
             </v-row>
@@ -75,7 +94,14 @@
 <script>
 
 
+    import {mapState} from "vuex";
+
     export default {
+        computed : {
+            ...mapState({
+                text: state => state.member.message,
+            })
+        },
 
         methods: {
             register() {
@@ -94,15 +120,18 @@
                 this.$router.push('/')
             },
             idCheck() {
+                this.snackbar = true
                 this.$store.dispatch('member/idCheck', {userId: this.userId})
             }
         },
         data: () => ({
+            snackbar: false,
+            justify : 'center',
             labelId: 'ID',
             labelPassword: 'PASSWORD',
             labelTwicePassword: 'CONFIRM PASSWORD',
             labelEmail: 'E-MAIL',
-            labelName: 'Name',
+            labelName: 'NAME',
             hintId: '5~15자, 대소문자 구분',
             hintPassword: '8~20자, 영문/숫자/특수기호 중 택2',
             clearable: true,
@@ -113,7 +142,8 @@
             password: '',
             userName: '',
             email: '',
-            twicePassword: ''
+            twicePassword: '',
+
 
 
         })

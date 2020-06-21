@@ -6,9 +6,10 @@
         <v-container fluid>
             <v-row
                     no-gutters
+                    justify="center"
             >
                 <v-col
-                        :cols="8"
+                        :cols="5"
                 >
                     <v-card
                             class="pa-2"
@@ -48,6 +49,7 @@
 <script>
     export default {
         data: () => ({
+            justify : 'center',
             valid: true,
             labelId: 'ID',
             labelPassword : 'PASSWORD',

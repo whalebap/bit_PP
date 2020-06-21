@@ -10,6 +10,7 @@
                     :src="item.src"
                     reverse-transition="fade-transition"
                     transition="fade-transition"
+                    cycle="cycle"
             ></v-carousel-item>
         </v-carousel>
 
@@ -24,7 +25,7 @@
         },
         data: () => ({
                 drawer: null,
-
+                cycle : true,
                 items: [
                     {
                         src: 'https://images.unsplash.com/photo-1575600749331-6d13fdfe5323?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
